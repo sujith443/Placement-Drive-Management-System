@@ -37,6 +37,12 @@ const Sidebar = () => {
               <span>CRT Schedule</span>
             </Link>
           </li>
+          <li className={isActive('/admin/login')}>
+            <Link to="/admin/login">
+              <i className="bi bi-calendar-check"></i>
+              <span>Admin Login</span>
+            </Link>
+          </li>
         </ul>
         
         <div className="sidebar-footer">
