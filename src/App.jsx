@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import './styles/custom.css';
 
 // Common Components
@@ -25,6 +26,8 @@ import AdminPlacementList from './components/admin/placement/AdminPlacement';
 import AdminPlacementForm from './components/admin/placement/AdminPlacementForm';
 import AdminInternshipList from './components/admin/internship/AdminInternshipList';
 import AdminInternshipForm from './components/admin/internship/AdminInternshipForm';
+import AdminCRTList from './components/admin/crt/AdminCRTList';
+import AdminCRTForm from './components/admin/crt/AdminCRTForm';
 
 // Admin Auth Check
 const ProtectedAdminRoute = ({ children }) => {
@@ -73,6 +76,11 @@ function App() {
                 <Route path="internships" element={<AdminInternshipList />} />
                 <Route path="internships/add" element={<AdminInternshipForm />} />
                 <Route path="internships/edit/:id" element={<AdminInternshipForm />} />
+                
+                {/* CRT Sessions Management */}
+                <Route path="crt" element={<AdminCRTList />} />
+                <Route path="crt/add" element={<AdminCRTForm />} />
+                <Route path="crt/edit/:id" element={<AdminCRTForm />} />
                 
                 {/* Default redirect for admin routes */}
                 <Route path="*" element={<Navigate to="/admin/dashboard" replace />} />

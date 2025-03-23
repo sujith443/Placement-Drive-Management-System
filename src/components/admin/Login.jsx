@@ -1,39 +1,47 @@
 // src/components/admin/AdminLogin.js
-import React, { useState } from 'react';
-import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Form,
+  Button,
+  Alert,
+} from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const AdminLogin = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  
+
   const navigate = useNavigate();
-  
+
   // Mock admin credentials - in a real app, this would be validated against a backend
-  const ADMIN_USERNAME = 'admin';
-  const ADMIN_PASSWORD = 'admin123';
-  
+  const ADMIN_USERNAME = "admin";
+  const ADMIN_PASSWORD = "admin123";
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setLoading(true);
-    
+
     // Simulate API call delay
     setTimeout(() => {
       if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
         // Store admin auth status in localStorage (in a real app, use secure tokens)
-        localStorage.setItem('adminAuth', 'true');
+        localStorage.setItem("adminAuth", "true");
         // Redirect to admin dashboard
-        navigate('/admin/dashboard');
+        navigate("/admin/dashboard");
       } else {
-        setError('Invalid username or password');
+        setError("Invalid username or password");
       }
       setLoading(false);
     }, 800);
   };
-  
+
   return (
     <Container className="py-5">
       <Row className="justify-content-center">
@@ -42,14 +50,10 @@ const AdminLogin = () => {
             <Card.Header className="text-center bg-dark text-white">
               <h4 className="mb-0">Admin Login</h4>
             </Card.Header>
-            
+
             <Card.Body className="p-4">
-              {error && (
-                <Alert variant="danger">
-                  {error}
-                </Alert>
-              )}
-              
+              {error && <Alert variant="danger">{error}</Alert>}
+
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                   <Form.Label>Username</Form.Label>
@@ -61,7 +65,7 @@ const AdminLogin = () => {
                     required
                   />
                 </Form.Group>
-                
+
                 <Form.Group className="mb-4">
                   <Form.Label>Password</Form.Label>
                   <Form.Control
@@ -72,28 +76,41 @@ const AdminLogin = () => {
                     required
                   />
                 </Form.Group>
-                
+
+                <div className="my-2 text-center">
+                  <h6>User Credentials</h6>
+                  <b>Username:</b> admin <br />
+                  <strong>Password:</strong> admin123
+                </div>
+
                 <div className="d-grid">
-                  <Button 
-                    variant="primary" 
-                    type="submit" 
+                  <Button
+                    variant="primary"
+                    type="submit"
                     disabled={loading}
                     className="admin-login-btn"
                   >
                     {loading ? (
                       <>
-                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                        <span
+                          className="spinner-border spinner-border-sm me-2"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
                         Logging in...
                       </>
-                    ) : 'Login'}
+                    ) : (
+                      "Login"
+                    )}
                   </Button>
                 </div>
               </Form>
             </Card.Body>
-            
+
             <Card.Footer className="text-center bg-light py-3">
               <small className="text-muted">
-                Placement Drive Management System<br />
+                Placement Drive Management System
+                <br />
                 Admin Portal
               </small>
             </Card.Footer>
